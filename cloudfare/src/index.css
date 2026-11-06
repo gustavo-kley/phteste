@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   PHYSIO HOME — ESTILOS GLOBAIS
+   ============================================================ */
+
+@layer base {
+  :root {
+    --ph-deep: #183c35;
+    --ph-secondary: #42685b;
+    --ph-offwhite: #f5f3ed;
+    --ph-beige: #e8e3d8;
+    --ph-grafite: #242825;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #f5f3ed;
+    color: #242825;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #183c35;
+    color: #f5f3ed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', ui-serif, Georgia, serif;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Container editorial */
+  .ph-container {
+    @apply mx-auto w-full max-w-[1320px] px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Eyebrow / rótulo de seção */
+  .ph-eyebrow {
+    @apply text-xs uppercase tracking-[0.28em] font-medium;
+  }
+
+  /* Botão primário — verde profundo com hover suave */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-ph-deep px-7 py-3.5 text-sm font-medium tracking-wide text-ph-offwhite transition-all duration-500 ease-smooth hover:bg-ph-secondary hover:shadow-[0_18px_40px_-18px_rgba(24,60,53,0.7)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ph-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-ph-offwhite;
+  }
+
+  /* Botão fantasma (sobre fundo escuro / imagem) */
+  .btn-ghost-dark {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-white/35 px-7 py-3.5 text-sm font-medium tracking-wide text-white transition-all duration-500 ease-smooth hover:border-white hover:bg-white hover:text-ph-deep;
+  }
+
+  /* Botão fantasma (sobre fundo claro) */
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-ph-deep/25 px-7 py-3.5 text-sm font-medium tracking-wide text-ph-deep transition-all duration-500 ease-smooth hover:border-ph-deep hover:bg-ph-deep hover:text-ph-offwhite;
+  }
+
+  /* Linha divisória sutil */
+  .ph-hairline {
+    @apply h-px w-full bg-ph-grafite/10;
+  }
+}
+
+@layer utilities {
+  /* Reveal on scroll — estado inicial */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.24s; }
+  .reveal-delay-3 { transition-delay: 0.36s; }
+  .reveal-delay-4 { transition-delay: 0.48s; }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ============================================================
+   RESPEITA PREFERÊNCIA POR MENOS MOVIMENTO
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Scrollbar discreta (opcional, estética premium) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #e8e3d8;
+}
+::-webkit-scrollbar-thumb {
+  background: #42685b;
+  border-radius: 999px;
+  border: 3px solid #e8e3d8;
+}
